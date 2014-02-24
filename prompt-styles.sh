@@ -70,7 +70,15 @@ function set_prompt() {
        venv=''
     fi
 
-    export PS1="${myuser}@\h:${path}${venv}${branch} ${end}"
+    # Anaconda conda environments
+    if [[ $CONDA_DEFAULT_ENV != "" ]]
+       then
+           conda=" ${RED}(${CONDA_DEFAULT_ENV##*/})"
+    else
+       conda=''
+    fi
+
+    export PS1="${myuser}@\h:${path}${venv}${conda}${branch} ${end}"
     # export PS1="${myuser}${path}${venv}${branch} ${end}"
 }
 
